@@ -2,9 +2,16 @@
 # Author:    Emil Obert <emil.obert@t-online.de>
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+8 to toggle the breakpoint.
+
+class Card:
+    def __init__(self, value = '', suit = ''):
+        self.value = value
+        self.suit = suit
+
+def processUseInput(input):
+    #
+    for (i = 0; i < 60; i++)
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
