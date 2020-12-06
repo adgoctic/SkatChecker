@@ -8,13 +8,20 @@ class Card:
         self.value = value
         self.suit = suit
 
+
+class Checker:
+    cards = []
+    def __init__(self, cardArray = []):
+        self.cards = cardArray
+
+
+
+# takes 60(or less)-char string, converts to custom data type with attributes
+# !!!input syntax: value first, then suit (like english pronounciation)
 def processUseInput(input):
     #
-    for (i = 0; i < 60; i++)
+    for (i = 0; i < 59; i += 2)
 
+    if __name__ == '__main__':
+        print_hi('PyCharm')
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
