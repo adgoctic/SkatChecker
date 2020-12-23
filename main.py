@@ -21,7 +21,7 @@ class Checker:
     #   ->maybe change to list of 30 2-char strings(?)
     # !!!input syntax: value first, then suit (like english pronounciation)
     # returns: card array to be processed by checker class
-    def processUserInput(input):
+    def convertForAlgorithm(input):
         #
         cardArray = []
         # create a Card object for every card and add it to array
@@ -32,6 +32,15 @@ class Checker:
                 continue
         return cardArray
 
+    dict_zero = {'7' : 0,
+                 '8' : 1,
+                 '9' : 2,
+                 '0' : 3,
+                 'J' : 4,
+                 'Q' : 5,
+                 'K' : 6
+                 'A' : 7}
+
     # takes: gametype (ToDo: represent by number (?)
     #       ToDo / idea: no argument, always all types, return all orders at once ( might add unneccesary runtime)
     # returns: array of 9 numbers, representing the relative position of starting player for every
@@ -39,6 +48,11 @@ class Checker:
     def getOrder(gametype):
         # switch case for game types (?)
         # outsource the 4 color options to another function ? (no quadruple code)
+
+        # for zero game (no trump)
+        if gametype is 0:
+            for i in range(cards.)
+
 
 
 
