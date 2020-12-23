@@ -11,7 +11,7 @@ class Card:
 
 
 
-class Checker:  # ???? no class???
+class Checker:
     cards = []
     def __init__(self, cardArray = []):
         self.cards = cardArray
@@ -31,6 +31,15 @@ class Checker:  # ???? no class???
             else:
                 continue
         return cardArray
+
+    # takes: gametype (ToDo: represent by number (?)
+    #       ToDo / idea: no argument, always all types, return all orders at once ( might add unneccesary runtime)
+    # returns: array of 9 numbers, representing the relative position of starting player for every
+    # round, first round is always player 1 (implicit, left out)
+    def getOrder(gametype):
+        # switch case for game types (?)
+        # outsource the 4 color options to another function ? (no quadruple code)
+
 
 
 # if __name__ == '__main__':
