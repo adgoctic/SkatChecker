@@ -76,7 +76,7 @@ def check_cardset(filename):
     my_set = set(read_file(filename))
     #return complete_set.difference(my_set) == {}
     ############################
-    print(complete_set - my_set)
+    #print(complete_set - my_set)   # DEBUG
     ############################
     return complete_set == my_set
 
@@ -222,13 +222,13 @@ def contains_equivalent(list, card, trump):
         for c in list:
             if c.suit == card.suit:
                 if trump != '0':        #  suit 'J' not allowed (except in zero game)
-                    if c.suit != 'J':
-                        return True
-                    else:
-                        return False
+                    if c.suit != 'J':   # non-trump to match in non-zero game: matching suits and not playing a jack
+                        return True     # is correct
+                    else:               # non-zero game, non-trump to match, jack played
+                        return False    # is incorrect if you could have matched
                 else:
-                    return True
-    return False
+                    return True         # zero-game and suits match means you matched correctly
+    return False                        # default/backup
 
 
 def check_matching(s):
