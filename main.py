@@ -75,6 +75,9 @@ def check_cardset(filename):
     complete_set = set(read_file("complete.csv"))
     my_set = set(read_file(filename))
     #return complete_set.difference(my_set) == {}
+    ############################
+    print(complete_set - my_set)
+    ############################
     return complete_set == my_set
 
 
