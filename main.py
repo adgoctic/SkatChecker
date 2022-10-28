@@ -207,6 +207,12 @@ def create_player_lists():
     ##########################################################################
 
 
+'''
+:arguments:
+    list: list of cards (rest of hand of a player)
+    card: first card of current round, must be matched
+    trump: trump/game variant of current game
+'''
 def contains_equivalent(list, card, trump):
     if card.is_trump(trump):
         for c in list:
