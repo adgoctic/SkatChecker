@@ -299,7 +299,7 @@ def check_matching(s):
 if __name__ == '__main__':
     filename = input("enter a filename: ")
     playedCards = read_file(filename)
-    check = check_cardset(filename)
+    check = check_cardset(filename)  # ToDo: games might end sooner, especially zero-games
     if not check:
         print("not valid game; cardset incorrect")
         sys.exit()
