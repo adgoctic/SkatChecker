@@ -263,7 +263,7 @@ def check_matching(s):
                     else:
                         boo = False
                 if contains_equivalent(hand_1, first_card, s):
-                    second_card = hand_1.pop(0)
+                    third_card = hand_1.pop(0)
                     if contains_equivalent([third_card], first_card, s):
                         boo = True
                     else:
@@ -279,7 +279,7 @@ def check_matching(s):
                     else:
                         boo = False
                 if contains_equivalent(hand_2, first_card, s):
-                    second_card = hand_2.pop(0)
+                    third_card = hand_2.pop(0)
                     if contains_equivalent([third_card], first_card, s):
                         boo = True
                     else:
