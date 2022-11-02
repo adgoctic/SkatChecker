@@ -12,9 +12,6 @@ class Card:
         else:
             return (self.value == 'J' or self.suit == trump)
 
-    #def to_string(self):
-    #    return self.suit + self.value
-
     def __eq__(self, other):
         return (self.value == other.value and self.suit == other.suit)
 

@@ -12,6 +12,9 @@ hand_1 = []
 hand_2 = []
 hand_3 = []
 
+# difference of actually played cards from 32
+num_cards_missing = 0
+
 '''
 reads text file with card order in the format:
     CSV, 2 characters per card;
@@ -50,35 +53,24 @@ def read_file(fileName):
 
 
 '''
-returns: boolean, true iff valid cardset provided
+:returns: boolean, true iff valid cardset provided
+    "valid cardset: subset of 32 playing cards because game may end at any point
 '''
 def check_cardset(filename):
-    #complete_set = set(read_file("complete.csv"))
-
-    #####################################################################
-    #for c in playedCards:
-    #    print(c.to_string(), ' ')              #########DEBUG#################
-    #    print(str(c))   # updated, overrode actual str() fct.
-    #print(len(playedCards))
-    #####################################################################
-
-    #for card in playedCards:
-    #    if len(complete_set) > 0 and complete_set.__contains__(card):   ##for some reason, contains not redundand (??????!!)
-    #        complete_set.remove(card)
-    #    else:
-    #        return False
-    #if len(complete_set) == 0:
-    #    return True
-    #else:
-    #    return False
-
     complete_set = set(read_file("complete.csv"))
     my_set = set(read_file(filename))
-    #return complete_set.difference(my_set) == {}
+
     ############################
     #print(complete_set - my_set)   # DEBUG
     ############################
-    return complete_set == my_set
+
+    # note how many cards have not been played to adjust for-loops
+    num_cards_missing = 32 - len(my_set)
+    ###############################
+    # print("num_cards_missing = " + str(num_cards_missing))
+    ###############################
+    # return my_set.issubset(complete_set)  # for incomplete games
+    return my_set == complete_set
 
 
 '''
@@ -89,7 +81,7 @@ def order_grand():
     player_order = [1, 2, 3]
 
     for i in range(30):
-        if i % 3 == 0:
+        if (i % 3 == 0) and (len(playedCards) - i > 2):
             a = playedCards[i]
             b = playedCards[i + 1]
             c = playedCards[i + 2]
@@ -231,69 +223,69 @@ def contains_equivalent(list, card, trump):
     return False                        # default/backup
 
 
+# ToDo: adjust for variable amount of cards
 def check_matching(s):
     boo = False
-    for i in range(10):
-        #if i % 3 == 0:
-        first_player = player_order[i * 3]
-        second_player = player_order[i * 3 + 1]
-        third_player = player_order[i * 3 + 2]
+    for i in range(30):
+        if i % 3 == 0:
+            first_player = player_order[i]
+            second_player = player_order[i + 1]
+            third_player = player_order[i + 2]
 
-        #first_card = playedCards[i * 3]
-        #second_card = playedCards[i * 3 + 1]
-        #third_card = playedCards[i * 3 + 2]
-        match first_player:
-            case 1:
-                first_card = hand_1.pop(0)
+            #first_card = playedCards[i * 3]
+            #second_card = playedCards[i * 3 + 1]
+            #third_card = playedCards[i * 3 + 2]
+            match first_player:
+                case 1:
+                    first_card = hand_1.pop(0)
 
-                if contains_equivalent(hand_2, first_card, s):
-                    second_card = hand_2.pop(0)
-                    if contains_equivalent([second_card], first_card, s):
-                        boo = True
-                    else:
-                        boo = False
-                if contains_equivalent(hand_3, first_card, s):
-                    third_card = hand_3.pop(0)
-                    if contains_equivalent([third_card],first_card, s):
-                        boo = True
-                    else:
-                        boo = False
+                    if contains_equivalent(hand_2, first_card, s):
+                        second_card = hand_2.pop(0)
+                        if contains_equivalent([second_card], first_card, s):
+                            boo = True
+                        else:
+                            boo = False
+                    if contains_equivalent(hand_3, first_card, s):
+                        third_card = hand_3.pop(0)
+                        if contains_equivalent([third_card],first_card, s):
+                            boo = True
+                        else:
+                            boo = False
 
-            case 2:
-                first_card = hand_2.pop(0)
+                case 2:
+                    first_card = hand_2.pop(0)
 
-                if contains_equivalent(hand_3, first_card, s):
-                    second_card = hand_3.pop(0)
-                    if contains_equivalent([second_card], first_card, s):
-                        boo = True
-                    else:
-                        boo = False
-                if contains_equivalent(hand_1, first_card, s):
-                    third_card = hand_1.pop(0)
-                    if contains_equivalent([third_card], first_card, s):
-                        boo = True
-                    else:
-                        boo = False
+                    if contains_equivalent(hand_3, first_card, s):
+                        second_card = hand_3.pop(0)
+                        if contains_equivalent([second_card], first_card, s):
+                            boo = True
+                        else:
+                            boo = False
+                    if contains_equivalent(hand_1, first_card, s):
+                        third_card = hand_1.pop(0)
+                        if contains_equivalent([third_card], first_card, s):
+                            boo = True
+                        else:
+                            boo = False
 
-            case 3:
-                first_card = hand_3.pop(0)
+                case 3:
+                    first_card = hand_3.pop(0)
 
-                if contains_equivalent(hand_1, first_card, s):
-                    second_card = hand_1.pop(0)
-                    if contains_equivalent([second_card], first_card, s):
-                        boo = True
-                    else:
-                        boo = False
-                if contains_equivalent(hand_2, first_card, s):
-                    third_card = hand_2.pop(0)
-                    if contains_equivalent([third_card], first_card, s):
-                        boo = True
-                    else:
-                        boo = False
+                    if contains_equivalent(hand_1, first_card, s):
+                        second_card = hand_1.pop(0)
+                        if contains_equivalent([second_card], first_card, s):
+                            boo = True
+                        else:
+                            boo = False
+                    if contains_equivalent(hand_2, first_card, s):
+                        third_card = hand_2.pop(0)
+                        if contains_equivalent([third_card], first_card, s):
+                            boo = True
+                        else:
+                            boo = False
     return boo
 
 
-# ToDo: Check what needs to be considered with the last 2 cards not being dealt/played (cut off?)
 # ToDo: move ordering functions to separate file
 # ToDo: write test files
 
